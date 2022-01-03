@@ -1,5 +1,5 @@
 import Express from "express";
-import { crearProducto, eliminarProducto, queryAllProductos } from "../../controllers/productos/controller.js";
+import { crearProducto, eliminarProducto, queryAllProductos, editarProducto } from "../../controllers/productos/controller.js";
 // Importamos de los controladores las operaciones del CRUD
 
 // usada para crear un nuevo objeto router para manejar requests o peticiones
@@ -26,6 +26,13 @@ rutasProductos.route("/productos").post(
     (req, res) => {
         console.log("Alguien hizo POST a la ruta de /productos");
         crearProducto(req.body, genericCallback(res));
+    }
+)
+
+rutasProductos.route("/productos/:id").patch(
+    (req, res) => {
+        console.log("Alguien hizo PATCH a la ruta de /productos/:id");
+        editarProducto(req.params.id, req.body, genericCallback(res))
     }
 )
 
