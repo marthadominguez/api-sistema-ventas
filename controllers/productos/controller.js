@@ -15,8 +15,12 @@ const crearProducto = async (datosProducto, callback) => {
 
 // const editarProducto
 
-// const eliminarProducto
+const eliminarProducto = async (id, callback) => {
+    const filtroProducto = { _id: new ObjectId(id) }
+    const baseDeDatos = obtenerDB();
+    await baseDeDatos.collection("productos").deleteOne(filtroProducto, callback);
+}
 
-export { queryAllProductos, crearProducto }
+export { queryAllProductos, crearProducto, eliminarProducto }
 
 // crearProducto, consultarProducto, editarProducto, eliminarProducto 

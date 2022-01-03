@@ -29,4 +29,11 @@ rutasProductos.route("/productos").post(
     }
 )
 
+rutasProductos.route("/productos").post(
+    (req, res) => {
+        console.log("Alguien hizo POST a la ruta de /productos")
+        crearProducto(req.body, genericCallback(res))
+    }
+)
+
 export default rutasProductos;
