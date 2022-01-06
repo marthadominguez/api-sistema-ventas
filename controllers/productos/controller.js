@@ -11,7 +11,10 @@ const crearProducto = async (datosProducto, callback) => {
     await baseDeDatos.collection("productos").insertOne(datosProducto, callback);
 }
 
-// const consultarProducto
+const consultarProducto = async (id, callback) => {
+    const baseDeDatos = obtenerDB();
+    await baseDeDatos.collection("productos").findOne({_id: new ObjectId(id)}, callback);
+}
 
 const editarProducto = async (id, edicion, callback) => {
     const filtroProducto = { _id: new ObjectId(id) }
@@ -31,4 +34,4 @@ const eliminarProducto = async (id, callback) => {
     await baseDeDatos.collection("productos").deleteOne(filtroProducto, callback);
 }
 
-export { queryAllProductos, crearProducto, eliminarProducto, editarProducto }
+export { queryAllProductos, crearProducto, consultarProducto, editarProducto, eliminarProducto }
