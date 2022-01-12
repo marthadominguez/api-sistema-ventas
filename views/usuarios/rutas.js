@@ -20,6 +20,13 @@ rutasUsuarios.route("/usuarios").get(
     }
 )
 
+rutasUsuarios.route("/usuarios/vendedores").get(
+    (req, res) => {
+        console.log("Alguien hizo GET en la ruta /usuarios/vendedores");
+        queryAllVendedores(genericCallback(res));
+    }
+)
+
 rutasUsuarios.route("/usuarios").post((req, res) => {
     console.log("Alguien hizo POST en la ruta /usuarios");
     crearUsuario(req.body, genericCallback(res));

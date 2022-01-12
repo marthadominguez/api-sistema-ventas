@@ -6,14 +6,14 @@ const queryAllProductos = async (callback) => {
     await baseDeDatos.collection("productos").find({}).limit(50).toArray(callback);
 }
 
+const queryProductosDisponibles = async (callback) => {
+    const baseDeDatos = obtenerDB();
+    await baseDeDatos.collection("productos").find({estado: "Disponible"}).limit(50).toArray(callback);
+}
+
 const crearProducto = async (datosProducto, callback) => {
     const baseDeDatos = obtenerDB();
     await baseDeDatos.collection("productos").insertOne(datosProducto, callback);
-}
-
-const consultarProducto = async (id, callback) => {
-    const baseDeDatos = obtenerDB();
-    await baseDeDatos.collection("productos").findOne({_id: new ObjectId(id)}, callback);
 }
 
 const editarProducto = async (id, edicion, callback) => {
@@ -26,7 +26,7 @@ const editarProducto = async (id, edicion, callback) => {
         filtroProducto, operacion, { upsert: true, returnOriginal: true }, callback    
     )
 
-}
+} 
 
 const eliminarProducto = async (id, callback) => {
     const filtroProducto = { _id: new ObjectId(id) }
@@ -34,4 +34,4 @@ const eliminarProducto = async (id, callback) => {
     await baseDeDatos.collection("productos").deleteOne(filtroProducto, callback);
 }
 
-export { queryAllProductos, crearProducto, consultarProducto, editarProducto, eliminarProducto }
+export { queryAllProductos, queryProductosDisponibles, crearProducto, editarProducto, eliminarProducto }
