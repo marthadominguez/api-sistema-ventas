@@ -8,6 +8,11 @@ const queryAllUsers = async (callback) => {
     await baseDeDatos.collection("usuarios").find({}).limit(50).toArray(callback);
 }
 
+const queryAllVendedores = async (callback) => {
+    const baseDeDatos = obtenerDB();
+    await baseDeDatos.collection("usuarios").find({"rol": "vendedor"}).limit(50).toArray(callback);
+}
+
 const crearUsuario = async (datosUsuario, callback) => {
     const baseDeDatos = obtenerDB();
     await baseDeDatos.collection('usuarios').insertOne(datosUsuario, callback);
@@ -47,4 +52,4 @@ const editarUsuario = async (id, edicion, callback) => {
       .findOneAndUpdate(filtroUsuario, operacion, { upsert: true, returnOriginal: true }, callback);
   };
 
-export { queryAllUsers, queryOrCreateUsuario, crearUsuario, editarUsuario }
+export { queryAllUsers, queryOrCreateUsuario, crearUsuario, editarUsuario, queryAllVendedores }

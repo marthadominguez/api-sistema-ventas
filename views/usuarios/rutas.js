@@ -1,5 +1,5 @@
 import Express from "express";
-import { queryAllUsers, queryOrCreateUsuario, crearUsuario, editarUsuario } from "../../controllers/usuarios/controller.js";
+import { queryAllUsers, queryOrCreateUsuario, crearUsuario, editarUsuario, queryAllVendedores } from "../../controllers/usuarios/controller.js";
 
 const rutasUsuarios = Express.Router();
 
